@@ -123,7 +123,8 @@ import { config, fields, collection } from "@keystatic/core";
 
 export default config({
   storage: {
-    kind: "local",
+    kind: 'github',
+    repo: 'ciberman2002-lab/Nathalie',
   },
   collections: {
     artigos: collection({
@@ -283,3 +284,4 @@ export default config({
     }),
   },
 });
+
