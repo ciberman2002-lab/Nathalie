@@ -1,0 +1,84 @@
+---
+// src/pages/blog/[slug].astro
+import '../../styles/global.css';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import WhatsAppButton from '../../components/WhatsAppButton';
+import Article from '../../components/Article';
+
+import { createReader } from '@keystatic/core/reader';
+import keystaticConfig from '../../../keystatic.config';
+
+export const prerender = false;
+
+// O reader busca os arquivos diretamente no sistema de arquivos
+const reader = createReader(import.meta.env.DEV ? './' : process.cwd(), keystaticConfig);
+
+const { slug } = Astro.params;
+const entry = await reader.collections.artigos.read(slug);
+
+if (!entry) {
+  return Astro.redirect('/404');
+}
+
+/** 
+ * Na Reader API, o 'content' é uma função. 
+ * Precisamos dar await nela para obter o objeto JSON (AST) 
+ * que o KeystaticDocumentRenderer consegue ler.
+ */
+const contentAst = entry.content ? await entry.content() : null;
+
+const post = {
+  title: entry.title,
+  category: entry.category,
+  date: entry.date,
+  author: entry.author,
+  heroImage: entry.heroImage,
+  quote: entry.quote,
+  content: contentAst, // O JSON estruturado com H2, Bold, etc.
+  specialistNote: entry.specialistNote,
+  tags: entry.tags,
+  recommended: entry.recommended,
+};
+---
+
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{post.title} | Dra. Nathalie Almeida</title>
+    <meta name="description" content={post.quote || 'Artigo jurídico especializado pela Dra. Nathalie Almeida'} />
+    
+    <meta property="og:title" content={post.title} />
+    <meta property="og:description" content={post.quote} />
+    <meta property="og:image" content={post.heroImage?.src} />
+    <meta property="og:type" content="article" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
+  </head>
+
+  <body class="bg-[#fdfbf7] selection:bg-[#4a0404] selection:text-white overflow-x-hidden">
+    <Header client:load />
+
+    <main class="pt-32 pb-24 max-w-5xl mx-auto px-6 paddingTopMobile">
+      <Article
+        client:load
+        title={post.title}
+        category={post.category}
+        date={post.date}
+        author={post.author}
+        heroImage={post.heroImage}
+        quote={post.quote}
+        content={post.content}
+        specialistNote={post.specialistNote}
+        tags={post.tags}
+        recommended={post.recommended}
+      />
+    </main>
+
+    <Footer client:load />
+    <WhatsAppButton client:idle />
+  </body>
+</html>

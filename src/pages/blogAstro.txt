@@ -1,0 +1,107 @@
+---
+// src/pages/blog.astro
+import '../styles/global.css';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import WhatsAppButton from '../components/WhatsAppButton';
+import { motion } from 'framer-motion'; // Ainda podemos usar animações se quiser
+
+// Simulação de dados (isso facilita o SEO pois o Astro gera o HTML baseado nisso no build)
+const posts = [
+  {
+    title: "A Importância do Planejamento Sucessório na Preservação de Bens",
+    excerpt: "Descubra como a estruturação jurídica adequada pode evitar conflitos familiares e reduzir a carga tributária sobre a herança.",
+    category: "Sucessões",
+    date: "20 Jan, 2024",
+    slug: "planejamento-sucessorio",
+    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    title: "Direitos e Garantias em Rescisões de Contratos Executivos",
+    excerpt: "Uma análise detalhada sobre cláusulas de non-compete e pacotes de indenização para cargos de alto escalão.",
+    category: "Trabalhista",
+    date: "12 Jan, 2024",
+    slug: "rescisao-executivos",
+    image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=800"
+  }
+];
+---
+
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Blog Jurídico | Dra. Nathalie Almeida</title>
+    <meta name="description" content="Artigos especializados sobre Direito do Trabalho e Sucessões pela Dra. Nathalie Almeida." />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-[#fdfbf7] selection:bg-[#4a0404] selection:text-white overflow-x-hidden">
+    
+    <Header client:load />
+
+    <main class="pt-32 pb-24 px-6">
+      <div class="max-w-7xl mx-auto">
+        
+        <header class="text-center mb-20">
+          <span class="text-[10px] tracking-[0.5em] gold-text uppercase block mb-4 font-classic">Conhecimento Estratégico</span>
+          <h1 class="font-serif-luxury text-4xl md:text-6xl bordeaux-text italic mb-6">Artigos & Insights</h1>
+          <div class="h-[1px] w-24 bg-[#c5a028] opacity-20 mx-auto"></div>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          {posts.map((post) => (
+            <article class="group cursor-pointer">
+              <a href={`/blog/${post.slug}`} class="block">
+                <div class="relative overflow-hidden mb-6 aspect-[16/9] shadow-sm">
+                  <img 
+                    src={post.image} 
+                    alt={post.title}
+                    class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105" 
+                  />
+                  <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-700"></div>
+                </div>
+                
+                <div class="space-y-4">
+                  <div class="flex items-center gap-3">
+                    <span class="text-[9px] tracking-[0.3em] gold-text uppercase font-classic font-bold">{post.category}</span>
+                    <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
+                    <span class="text-[9px] tracking-[0.3em] text-slate-400 uppercase font-classic">{post.date}</span>
+                  </div>
+                  
+                  <h2 class="font-serif-luxury text-2xl bordeaux-text leading-snug group-hover:gold-text transition-colors duration-500">
+                    {post.title}
+                  </h2>
+                  
+                  <p class="text-slate-500 text-sm leading-relaxed font-light line-clamp-3">
+                    {post.excerpt}
+                  </p>
+                  
+                  <div class="pt-4 flex items-center gap-2 bordeaux-text font-classic text-[10px] tracking-[0.2em] uppercase">
+                    Ler Artigo Completo
+                    <span class="w-6 h-[1px] bg-gold opacity-50 group-hover:w-10 transition-all"></span>
+                  </div>
+                </div>
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </main>
+
+    <Footer />
+    <WhatsAppButton client:idle />
+  </body>
+</html>
+
+<style>
+  /* Mantendo o line-clamp para não quebrar o grid com textos longos */
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+  }
+</style>

@@ -1,0 +1,100 @@
+---
+// src/pages/index.astro
+import '../styles/global.css';
+import Header from '../components/Header';
+import Hero from '../components/Hero';
+import Expertise from '../components/Expertise';
+import About from '../components/About';
+import Insights from '../components/Insights';
+import FAQ from '../components/FAQ';
+import Contact from '../components/Contact';
+import Footer from '../components/Footer';
+import CookieBanner from '../components/CookieBanner';
+import WhatsAppButton from '../components/WhatsAppButton';
+
+import { getAllArticles } from '../utils/keystatic-reader'; // ajuste o caminho se necessário
+
+// Leitura dos artigos reais no server-side
+const allPosts = await getAllArticles();
+
+// Seleciona os 3 últimos (mais recentes), já ordenados por data descendente no reader
+const last3Posts = allPosts.slice(0, 3);
+---
+
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <title>Dra. Nathalie Almeida | Advogada</title>
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#640d14">
+    <link 
+      rel="preload" 
+      href="/fonts/cinzel-v26-latin-regular.woff2" 
+      as="font" 
+      type="font/woff2" 
+      crossorigin="anonymous"
+    />
+    <link rel="icon" type="image/svg+xml" href="/Nathalie_logo_SVG.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-[#fdfbf7] selection:bg-[#4a0404] selection:text-white overflow-x-hidden">
+    
+    <Header client:load />
+    
+    <main>
+      <Hero client:load />
+      <Expertise client:visible />
+      <About client:visible />
+      <Insights client:visible posts={last3Posts} />
+      <FAQ client:visible />
+<!-- <Contact client:visible /> -->
+    </main>
+
+    <Footer />
+    <CookieBanner client:idle />
+    <WhatsAppButton client:idle />
+
+<script is:inline>
+  // Função para scroll suave com offset
+  function scrollToSection(sectionId) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 100;
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: elementPosition - offset,
+        behavior: 'smooth'
+      });
+      // Limpa URL
+      history.replaceState(null, '', window.location.pathname);
+    }
+  }
+
+  // Verifica parâmetro na URL
+  document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const section = urlParams.get('section');
+
+    if (section) {
+      // Tenta scroll imediato
+      scrollToSection(section);
+
+      // Observer para caso a seção seja carregada depois (lazy ou client:visible)
+      const observer = new MutationObserver(() => {
+        scrollToSection(section);
+      });
+
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+
+      // Timeout de segurança (remove observer após 5s)
+      setTimeout(() => observer.disconnect(), 5000);
+    }
+  });
+</script>
+  </body>
+</html>
