@@ -21,7 +21,7 @@ import vercel from "@astrojs/vercel";
 
 export default defineConfig({
   // Use "static" em vez de "hybrid"
-  output: "static",
+  output: "server",
 
   adapter: vercel({
     webAnalytics: {
