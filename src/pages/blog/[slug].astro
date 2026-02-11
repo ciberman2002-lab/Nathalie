@@ -1,44 +1,40 @@
 ---
-// src/pages/blog/[slug].astro
+// src/pages/blog/[slug].astro mudado do que tem na maquina
 import '../../styles/global.css';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import WhatsAppButton from '../../components/WhatsAppButton';
 import Article from '../../components/Article';
 
-import { createReader } from '@keystatic/core/reader';
-import keystaticConfig from '../../../keystatic.config';
+import { getCollection } from 'astro:content';
 
-export const prerender = false;
-
-// O reader busca os arquivos diretamente no sistema de arquivos
-const reader = createReader(import.meta.env.DEV ? './' : process.cwd(), keystaticConfig);
-
-const { slug } = Astro.params;
-const entry = await reader.collections.artigos.read(slug);
-
-if (!entry) {
-  return Astro.redirect('/404');
+// 1. Gera os caminhos estáticos durante o build (Essencial para Vercel Static)
+export async function getStaticPaths() {
+  const posts = await getCollection('artigos');
+  return posts.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
 }
 
-/** 
- * Na Reader API, o 'content' é uma função. 
- * Precisamos dar await nela para obter o objeto JSON (AST) 
- * que o KeystaticDocumentRenderer consegue ler.
- */
-const contentAst = entry.content ? await entry.content() : null;
+// 2. Recupera os dados do post
+const { entry } = Astro.props;
 
+// 3. Renderiza o conteúdo Markdoc (.mdoc) para um componente Astro
+const { Content } = await entry.render();
+
+// 4. Mapeia os dados do Keystatic para o formato que seu componente Article espera
 const post = {
-  title: entry.title,
-  category: entry.category,
-  date: entry.date,
-  author: entry.author,
-  heroImage: entry.heroImage,
-  quote: entry.quote,
-  content: contentAst, // O JSON estruturado com H2, Bold, etc.
-  specialistNote: entry.specialistNote,
-  tags: entry.tags,
-  recommended: entry.recommended,
+  title: entry.data.title,
+  category: entry.data.category,
+  date: entry.data.date,
+  author: entry.data.author,
+  heroImage: entry.data.heroImage,
+  quote: entry.data.quote,
+  content: Content, // Agora o conteúdo é um componente renderizável
+  specialistNote: entry.data.specialistNote,
+  tags: entry.data.tags,
+  recommended: entry.data.recommended,
 };
 ---
 
@@ -82,3 +78,4 @@ const post = {
     <WhatsAppButton client:idle />
   </body>
 </html>
+
