@@ -18,10 +18,10 @@ import react from "@astrojs/react";
 import tailwind from "@tailwindcss/vite";
 import keystatic from "@keystatic/astro";
 import vercel from "@astrojs/vercel";
+import markdoc from "@astrojs/markdoc";
 
 export default defineConfig({
-  // Use "static" em vez de "hybrid"
-  output: "server",
+  output: "static",
 
   adapter: vercel({
     webAnalytics: {
@@ -29,7 +29,7 @@ export default defineConfig({
     },
   }),
 
-  integrations: [react(), keystatic()],
+  integrations: [react(), keystatic(), markdoc()],
   vite: {
     plugins: [tailwind()],
   },
