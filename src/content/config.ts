@@ -1,12 +1,11 @@
 import { defineCollection, z } from 'astro:content';
 
 const artigos = defineCollection({
-  // 'content' é necessário para arquivos .mdoc (Markdoc)
-  type: 'content', 
+  type: 'content',
   schema: z.object({
     title: z.string(),
-    category: z.enum(["Direito de Família", "Sucessões", "Trabalhista", "Governança", "Jurisprudência"]),
-    date: z.string(),
+    category: z.string(),
+    date: z.date().or(z.string()), // Aceita data em formato objeto ou string
     author: z.object({
       name: z.string(),
       specialty: z.string(),
