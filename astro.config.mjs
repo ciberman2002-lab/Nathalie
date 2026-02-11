@@ -8,10 +8,7 @@ import markdoc from "@astrojs/markdoc";
 export default defineConfig({
   output: "static",
 
-  adapter: vercel({
-    webAnalytics: { enabled: true },
-    imageService: true, // opcional, se quiser otimização de imagens
-  }),
+  adapter: vercel(),
 
   integrations: [react(), keystatic(), markdoc()],
 
