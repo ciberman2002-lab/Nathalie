@@ -25,17 +25,10 @@ const { Content } = await entry.render();
 
 // 4. Mapeia os dados do Keystatic para o formato que seu componente Article espera
 const post = {
-  title: entry.data.title,
-  category: entry.data.category,
-  date: entry.data.date,
-  author: entry.data.author,
-  heroImage: entry.data.heroImage,
-  quote: entry.data.quote,
-  content: Content, // Agora o conteúdo é um componente renderizável
-  specialistNote: entry.data.specialistNote,
-  tags: entry.data.tags,
-  recommended: entry.data.recommended,
+  ...entry.data,
+  content: Content,
 };
+
 ---
 
 <html lang="pt-br">
@@ -78,4 +71,5 @@ const post = {
     <WhatsAppButton client:idle />
   </body>
 </html>
+
 
