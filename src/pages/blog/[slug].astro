@@ -9,36 +9,48 @@ import Article from '../../components/Article';
 import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '../../../keystatic.config';
 
+// 🔹 IMPORTANTE: manter server-side para Keystatic + Vercel
 export const prerender = false;
 
-// O reader busca os arquivos diretamente no sistema de arquivos
-const reader = createReader(import.meta.env.DEV ? './' : process.cwd(), keystaticConfig);
+// ======================================================
+// ✅ 1) GERAR TODAS AS ROTAS CORRETAMENTE (EVITA 404)
+// ======================================================
+export async function getStaticPaths() {
+  const reader = createReader(process.cwd(), keystaticConfig);
+  const allArtigos = await reader.collections.artigos.list();
+
+  return allArtigos.map((slug) => ({
+    params: { slug },
+  }));
+}
+
+// ======================================================
+// ✅ 2) LEITURA SEGURA DO ARTIGO (FUNCIONA NO VERCEL)
+// ======================================================
+const reader = createReader(
+  import.meta.env.DEV ? process.cwd() : process.cwd(),
+  keystaticConfig
+);
 
 const { slug } = Astro.params;
+
+// 🔹 Lê o artigo do Keystatic (se não existir, cai no 404)
 const entry = await reader.collections.artigos.read(slug);
 
 if (!entry) {
   return Astro.redirect('/404');
 }
 
-export async function getStaticPaths() {
-  const reader = createReader(process.cwd(), keystaticConfig);
-  const allArtigos = await reader.collections.artigos.list();
-  return allArtigos.map(slug => ({ params: { slug } }));
-}
-
-/** 
- * Na Reader API, o 'content' é uma função. 
- * Precisamos dar await nela para obter o objeto JSON (AST) 
- * que o KeystaticDocumentRenderer consegue ler.
- *const contentAst = entry.content ? await entry.content() : null;
- */
-
+// 🔹 Converte o conteúdo mdoc para AST (JSON que seu renderer entende)
 const contentAst = entry.content ? await entry.content() : null;
-if (!entry || !contentAst) {
+
+if (!contentAst) {
   return Astro.redirect('/404');
 }
 
+// ======================================================
+// ✅ 3) NORMALIZAÇÃO DO POST (MANTENDO SEUS CAMPOS)
+// ======================================================
 const post = {
   title: entry.title,
   category: entry.category,
@@ -46,7 +58,7 @@ const post = {
   author: entry.author,
   heroImage: entry.heroImage,
   quote: entry.quote,
-  content: contentAst, // O JSON estruturado com H2, Bold, etc.
+  content: contentAst, // AST do Markdoc/Keystatic
   specialistNote: entry.specialistNote,
   tags: entry.tags,
   recommended: entry.recommended,
@@ -57,20 +69,31 @@ const post = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>{post.title} | Dra. Nathalie Almeida</title>
-    <meta name="description" content={post.quote || 'Artigo jurídico especializado pela Dra. Nathalie Almeida'} />
-    
+
+    <meta
+      name="description"
+      content={post.quote ||
+        'Artigo jurídico especializado pela Dra. Nathalie Almeida'}
+    />
+
     <meta property="og:title" content={post.title} />
     <meta property="og:description" content={post.quote} />
     <meta property="og:image" content={post.heroImage?.src} />
     <meta property="og:type" content="article" />
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
-  <body class="bg-[#fdfbf7] selection:bg-[#4a0404] selection:text-white overflow-x-hidden">
+  <body
+    class="bg-[#fdfbf7] selection:bg-[#4a0404] selection:text-white overflow-x-hidden"
+  >
     <Header client:load />
 
     <main class="pt-32 pb-24 max-w-5xl mx-auto px-6 paddingTopMobile">
