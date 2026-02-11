@@ -10,7 +10,7 @@ import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '../../../keystatic.config';
 
 // 🔹 IMPORTANTE: manter server-side para Keystatic + Vercel
-export const prerender = false;
+export const prerender = true;
 
 // ======================================================
 // ✅ 1) GERAR TODAS AS ROTAS CORRETAMENTE (EVITA 404)
@@ -27,10 +27,7 @@ export async function getStaticPaths() {
 // ======================================================
 // ✅ 2) LEITURA SEGURA DO ARTIGO (FUNCIONA NO VERCEL)
 // ======================================================
-const reader = createReader(
-  import.meta.env.DEV ? process.cwd() : process.cwd(),
-  keystaticConfig
-);
+const reader = createReader(process.cwd(), keystaticConfig);
 
 const { slug } = Astro.params;
 
@@ -116,3 +113,4 @@ const post = {
     <WhatsAppButton client:idle />
   </body>
 </html>
+
