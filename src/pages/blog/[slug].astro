@@ -23,10 +23,9 @@ const { entry } = Astro.props;
 // 3. Renderiza o conteúdo Markdoc (.mdoc) para um componente Astro
 const { Content } = await entry.render();
 
-// 4. Mapeia os dados do Keystatic para o formato que seu componente Article espera
 const post = {
   ...entry.data,
-  content: Content,
+  // Não coloque o 'Content' aqui dentro se for usá-lo no DocumentRenderer
 };
 
 ---
@@ -71,5 +70,6 @@ const post = {
     <WhatsAppButton client:idle />
   </body>
 </html>
+
 
 
