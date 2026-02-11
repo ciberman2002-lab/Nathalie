@@ -999,7 +999,11 @@ const Article: React.FC<ArticleProps> = ({
             <div className="flex items-center space-x-4 mb-6 text-[10px] tracking-[0.2em] font-classic uppercase gold-text">
               <span>{category}</span>
               <span className="w-1 h-1 bg-[#c5a028] rounded-full" />
-              <span className="text-slate-400">{date}</span>
+              {/* <span className="text-slate-400">{date}</span> */}
+              <span className="text-slate-400">
+  {date instanceof Date ? date.toLocaleDateString('pt-BR') : String(date)}
+</span>
+
             </div>
 
             <h1 className="font-serif-luxury text-4xl md:text-6xl bordeaux-text mb-8 leading-[1.1]">
