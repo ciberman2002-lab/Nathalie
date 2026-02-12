@@ -126,6 +126,9 @@ export default config({
     kind: 'github',
     repo: 'ciberman2002-lab/Nathalie',
   },
+   ui: {
+    path: "keystatic",   // 👉 ESSENCIAL EM ASTRO + VERCEL
+  },
   collections: {
     artigos: collection({
       label: "Artigos",
@@ -284,4 +287,5 @@ export default config({
     }),
   },
 });
+
 
