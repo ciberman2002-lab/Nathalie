@@ -17,7 +17,6 @@ import { getAllArticles } from '../utils/keystatic-reader'; // ajuste o caminho 
 // Leitura dos artigos reais no server-side
 const allPosts = await getAllArticles();
 
-// Seleciona os 3 últimos (mais recentes), já ordenados por data descendente no reader
 const last3Posts = allPosts.slice(0, 3);
 ---
 <!DOCTYPE html>
