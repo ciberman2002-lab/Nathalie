@@ -44,10 +44,10 @@ const last3Posts = allPosts.slice(0, 3);
   </head>
   <body class="bg-[#fdfbf7] selection:bg-[#4a0404] selection:text-white overflow-x-hidden">
     
-    <Header client:load />
+    <Header client:idle />
     
     <main>
-      <Hero client:load />
+      <Hero />
       <Expertise client:visible />
       <About client:visible />
       <Insights client:visible posts={last3Posts} />
