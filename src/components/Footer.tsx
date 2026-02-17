@@ -84,9 +84,9 @@ const Footer: React.FC = () => {
     <footer className="py-16 px-6 border-t border-slate-100 bg-[#fdfbf7]">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-center md:text-left">
         <div className="md:col-span-1 flex flex-col items-center md:items-star ">
-          <h2 className="font-classic text-lg bordeaux-text tracking-widest mb-4">
+          <h3 className="font-classic text-lg bordeaux-text tracking-widest mb-4">
             NATHALIE ALMEIDA
-          </h2>
+          </h3>
           <p className="text-[9px] text-slate-400 tracking-[0.2em] uppercase mb-6 italic">
             Advocacia e Consultoria Jurídica
           </p>
@@ -106,9 +106,9 @@ const Footer: React.FC = () => {
         </div>
 
         <div>
-          <h4 className="font-classic text-[10px] tracking-[0.3em] uppercase bordeaux-text mb-6">
+          <p className="font-classic text-[12px] tracking-[0.3em] uppercase bordeaux-text mb-6">
             Localização
-          </h4>
+          </p>
           <p className="text-xs text-slate-500 leading-loose">
             Atendimento Presencial e Digital <br />
             Principais Centros Jurídicos <br />
@@ -117,9 +117,9 @@ const Footer: React.FC = () => {
         </div>
 
         <div>
-          <h4 className="font-classic text-[10px] tracking-[0.3em] uppercase bordeaux-text mb-6">
+          <p className="font-classic text-[12px] tracking-[0.3em] uppercase bordeaux-text mb-6">
             Expertise
-          </h4>
+          </p>
           <p className="text-xs text-slate-500 leading-loose">
             Direito do Trabalho <br />
             Direito das Sucessões <br />
@@ -128,9 +128,9 @@ const Footer: React.FC = () => {
         </div>
 
         <div>
-          <h4 className="font-classic text-[10px] tracking-[0.3em] uppercase bordeaux-text mb-6">
+          <p className="font-classic text-[12px] tracking-[0.3em] uppercase bordeaux-text mb-6">
             Contato
-          </h4>
+          </p>
           <p className="text-xs text-slate-500 leading-loose">
             +55 74 99804-3491 <br />
             adv.nathalie.ac@gmail.com <br />
