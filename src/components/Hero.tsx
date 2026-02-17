@@ -169,7 +169,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col lg:flex-row items-center justify-center md:pt-20 pb-12 overflow-hidden">
+    <section className="relative min-h-screen flex flex-col lg:flex-row items-center justify-center md:pt-20 pb-12 overflow-hidden mt-2 md:mt-0">
       {/* MOBILE IMAGE CONTAINER (Positioned high, colored, with soft fade) */}
       <div className="lg:hidden w-full relative flex justify-center z-10 pt-3">
         {" "}
