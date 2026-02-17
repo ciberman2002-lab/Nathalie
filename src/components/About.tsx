@@ -160,17 +160,17 @@ const About: React.FC = () => {
 
           <div className="mt-12 grid grid-cols-2 gap-8 border-t border-slate-100 pt-8">
             <div>
-              <h4 className="font-classic text-xl md:text-2xl bordeaux-text tracking-widest">
+              <p className="font-classic text-xl md:text-2xl bordeaux-text tracking-widest">
                 Atuação Jurídica
-              </h4>
+              </p>
               <p className="text-[9px] md:text-[10px] tracking-widest uppercase text-slate-400">
                 Sucessões & Inventários
               </p>
             </div>
             <div>
-              <h4 className="font-classic text-xl md:text-2xl bordeaux-text tracking-widest">
+              <p className="font-classic text-xl md:text-2xl bordeaux-text tracking-widest">
                 OAB/BA 88.476
-              </h4>
+              </p>
               <p className="text-[9px] md:text-[10px] tracking-widest uppercase text-slate-400">
                 Bahia
               </p>
