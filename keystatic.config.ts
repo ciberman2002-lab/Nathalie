@@ -173,12 +173,20 @@ export default config({
             defaultValue: "/nathalie-almeida-de-carvalho-advogada.webp",
           }),
         }),
-        heroImage: fields.object({
-          src: fields.text({
-            label: "URL da Imagem Hero",
-            description: "Imagem principal do artigo",
+        // heroImage: fields.object({
+        //   src: fields.text({
+        //     label: "URL da Imagem Hero",
+        //     description: "Imagem principal do artigo",
+        //   }),
+        //   alt: fields.text({ label: "Texto Alternativo da Imagem Hero" }),
+        // }),
+         heroImage: fields.object({
+          src: fields.image({
+            label: "Imagem Hero",
+            directory: "public/artigos/images",
+            publicPath: "/artigos/images/",
           }),
-          alt: fields.text({ label: "Texto Alternativo da Imagem Hero" }),
+          alt: fields.text({ label: "Texto Alternativo" }),
         }),
         quote: fields.text({
           label: "Citação Inicial (em destaque)",
@@ -287,6 +295,7 @@ export default config({
     }),
   },
 });
+
 
 
 
