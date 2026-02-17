@@ -46,7 +46,7 @@ const last3Posts = allPosts.slice(0, 3);
     <Header client:idle />
     
     <main>
-      <Hero />
+      <Hero client:load />
       <Expertise client:visible />
       <About client:visible />
       <Insights client:visible posts={last3Posts} />
