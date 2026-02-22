@@ -346,6 +346,21 @@ interface ArticleProps {
   onBackClick: () => void;
 }
 
+const handleWhatsAppShare = () => {
+  const urlAtual = window.location.href;
+  const mensagem = `Confira isto: ${urlAtual}`;
+  
+  const link = `https://wa.me{encodeURIComponent(mensagem)}`;
+  window.open(link, '_blank');
+};
+
+const handleLinkedinShare = () => {
+  const urlAtual = window.location.href;
+  const link = `https://www.linkedin.com{encodeURIComponent(urlAtual)}`;
+  
+  window.open(link, '_blank', 'noreferrer,noopener');
+};
+
 const Article: React.FC<ArticleProps> = ({
   title,
   category,
@@ -576,10 +591,16 @@ const Article: React.FC<ArticleProps> = ({
                   Compartilhar:
                 </span>
                 <div className="flex space-x-4">
-                  <button className="bordeaux-text hover:text-gold transition-colors font-classic text-[10px]">
+                  <button 
+                    onClick={handleLinkedinShare}
+                    className="bordeaux-text hover:text-gold transition-colors font-classic text-[10px]"
+                  >
                     LinkedIn
                   </button>
-                  <button className="bordeaux-text hover:text-gold transition-colors font-classic text-[10px]">
+                  <button 
+                    onClick={handleWhatsAppShare}
+                    className="bordeaux-text hover:text-gold transition-colors font-classic text-[10px]"
+                  >
                     WhatsApp
                   </button>
                 </div>
