@@ -7,7 +7,6 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "build": "astro build"
   },
   "dependencies": {
     "@astrojs/markdoc": "^0.15.10",
