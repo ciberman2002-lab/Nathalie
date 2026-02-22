@@ -7,10 +7,10 @@ import markdoc from "@astrojs/markdoc";
 
 export default defineConfig({
   output: "static",
-
+  site: 'https://www.nathaliecarvalho.adv.br/',
   adapter: vercel(),
 
-  integrations: [react(), keystatic(), markdoc()],
+  integrations: [react(), keystatic(), markdoc(), sitemap()],
 
   vite: {
     plugins: [tailwind()],
