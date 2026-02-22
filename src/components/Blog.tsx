@@ -258,11 +258,21 @@ const Blog: React.FC<BlogProps> = ({ posts }) => {
                 className="group cursor-pointer flex flex-col"
               >
                 <div className="relative overflow-hidden mb-6 md:mb-8 aspect-[16/9] shadow-sm">
-                  <img
+                  {/* <img
                     src={post.image}
                     alt={post.title}
                     className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105"
-                  />
+                  /> */}
+                  <img 
+                      src={post.image} 
+                      alt={post.title}
+                      width="800"
+                      height="450"
+                      loading={index === 0 ? "eager" : "lazy"}
+                      fetchpriority={index === 0 ? "high" : "auto"}
+                      decoding="async"
+                      class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105" 
+                    />
                   <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-700"></div>
                 </div>
 
