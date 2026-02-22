@@ -348,15 +348,16 @@ interface ArticleProps {
 
 const handleWhatsAppShare = () => {
   const urlAtual = window.location.href;
-  const mensagem = `Confira isto: ${urlAtual}`;
+   const mensagem = `Confira este site: ${urlAtual}`;
   
-  const link = `https://wa.me{encodeURIComponent(mensagem)}`;
-  window.open(link, '_blank');
+  const link = `https://wa.me/?text=${encodeURIComponent(mensagem)}`;
+  
+  window.open(link, '_blank', 'noopener,noreferrer');
 };
 
 const handleLinkedinShare = () => {
   const urlAtual = window.location.href;
-  const link = `https://www.linkedin.com{encodeURIComponent(urlAtual)}`;
+  const link = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(urlAtual)}`;
   
   window.open(link, '_blank', 'noreferrer,noopener');
 };
