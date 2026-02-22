@@ -18,6 +18,30 @@ import { getAllArticles } from '../utils/keystatic-reader'; // ajuste o caminho 
 const allPosts = await getAllArticles();
 
 const last3Posts = allPosts.slice(0, 3);
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  "name": "Nathalie Almeida - Advogada",
+  "image": "https://www.nathaliecarvalho.adv.br/nathalie-almeida-de-carvalho-advogada-sobre.webp",
+  "url": "https://www.nathaliecarvalho.adv.br",
+  "telephone": "+5574998043491",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Praça João Alves,  54 - Centro",
+    "addressLocality": "Presidente Dutra",
+    "addressRegion": "BA",
+    "postalCode": "44930-075",
+    "addressCountry": "BR"
+  }
+  "knowsAbout": [
+      "Direito do Trabalho", 
+      "Direito Sucessório", 
+      "Direito Penal",
+      "Direito Imobiliário",
+      "Advocacia Extrajudicial"
+    ],
+    "inLanguage": "pt-BR"
+};
 ---
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -31,6 +55,7 @@ const last3Posts = allPosts.slice(0, 3);
     <meta name="theme-color" content="#640d14">
     
     <link rel="canonical" href="https://www.nathaliecarvalho.adv.br/" />
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Dra. Nathalie Almeida | Advocacia Especializada" />
