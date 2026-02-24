@@ -1,0 +1,112 @@
+---
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import '../styles/global.css';
+---
+
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <!-- Título específico para erro -->
+    <title>Página Não Encontrada | Dra. Nathalie Almeida</title>
+    
+    <!-- Impede que o erro apareça no Google -->
+    <meta name="robots" content="noindex, follow" />
+    
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#640d14">
+    
+    <link rel="icon" type="image/svg+xml" href="/Nathalie_logo_SVG.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
+
+    <style>
+      .error-wrapper {
+        background-color: var(--color-neutral-bg);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 80px 20px;
+        min-height: 70vh; /* Ajustado para acomodar header/footer */
+      }
+
+      .error-code {
+        font-family: var(--font-classic);
+        color: var(--color-bordeaux);
+        font-size: clamp(4rem, 10vw, 6rem); 
+        line-height: 1;
+        opacity: 0.1;
+        margin-bottom: 0.5rem;
+      }
+
+      h1 {
+        font-family: var(--font-serif-luxury);
+        color: var(--color-bordeaux);
+        font-size: clamp(2rem, 5vw, 3rem); 
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        margin: 0;
+      }
+
+      .divider {
+        width: 80px;
+        height: 2px;
+        background-color: var(--color-gold);
+        margin: 1.5rem auto;
+      }
+
+      p {
+        font-family: var(--font-sans);
+        color: #2d2d2d;
+        font-size: 1.1rem;
+        max-width: 550px;
+        line-height: 1.6;
+        margin-bottom: 2.5rem;
+      }
+
+      .btn-home {
+        font-family: var(--font-sans);
+        background-color: var(--color-bordeaux);
+        color: var(--color-gold-light);
+        padding: 14px 40px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.85rem;
+        letter-spacing: 2px;
+        border: 1px solid var(--color-gold);
+        transition: all 0.3s ease;
+      }
+
+      .btn-home:hover {
+        background-color: var(--color-gold);
+        color: var(--color-bordeaux);
+        transform: translateY(-2px);
+      }
+    </style>
+  </head>
+  <body>
+    <Header client:load />
+
+    <main class="error-wrapper">
+      <span class="error-code">404</span>
+      
+      <h1>Página não encontrada</h1>
+      <div class="divider"></div>
+      
+      <p>
+        O link acessado pode estar quebrado ou a página foi removida. 
+        Como no Direito, a precisão é fundamental — permita-nos guiar você de volta ao caminho correto.
+      </p>
+      
+      <a href="/" class="btn-home">
+        VOLTAR À PÁGINA INICIAL
+      </a>
+    </main>
+
+    <Footer client:load />
+  </body>
+</html>
