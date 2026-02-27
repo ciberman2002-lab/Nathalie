@@ -157,6 +157,10 @@ export default config({
           label: "Data de Publicação",
           defaultValue: { kind: "today" },
         }),
+        canonical: fields.text({
+          label: "URL Canonical",
+          description: "URL original se este conteúdo for republicado de outro site (opcional)",
+        }),
         author: fields.object({
           name: fields.text({
             label: "Nome do Autor",
@@ -295,6 +299,7 @@ export default config({
     }),
   },
 });
+
 
 
 
