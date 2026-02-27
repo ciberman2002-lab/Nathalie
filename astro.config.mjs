@@ -5,6 +5,7 @@ import keystatic from "@keystatic/astro";
 import vercel from "@astrojs/vercel/serverless"; // ← Recomendado para Vercel
 import markdoc from "@astrojs/markdoc";
 import sitemap from '@astrojs/sitemap';
+import partytown from '@astrojs/partytown';
 
 export default defineConfig({
   output: "static",
@@ -12,7 +13,11 @@ export default defineConfig({
   trailingSlash: 'never',
   adapter: vercel(),
 
-  integrations: [react(), keystatic(), markdoc(), sitemap()],
+  integrations: [react(), keystatic(), markdoc(), sitemap(), partytown({
+      config: { 
+        forward: ["dataLayer.push"],
+      },
+    }),],
 
   vite: {
     plugins: [tailwind()],
