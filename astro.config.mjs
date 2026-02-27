@@ -8,7 +8,8 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   output: "static",
-  site: 'https://www.nathaliecarvalho.adv.br/',
+  site: 'https://www.nathaliecarvalho.adv.br',
+  trailingSlash: 'never',
   adapter: vercel(),
 
   integrations: [react(), keystatic(), markdoc(), sitemap()],
