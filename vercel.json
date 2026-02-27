@@ -1,4 +1,5 @@
 {
+  "trailingSlash": false,
   "rewrites": [
     { "source": "/api/keystatic/(.*)", "destination": "/api/keystatic/$1" },
     { "source": "/keystatic/(.*)", "destination": "/keystatic/$1" }
