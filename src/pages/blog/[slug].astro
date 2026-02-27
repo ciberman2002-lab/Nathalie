@@ -31,6 +31,8 @@ const reader = createReader(process.cwd(), keystaticConfig);
 
 const { slug } = Astro.params;
 
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
 // 🔹 Lê o artigo do Keystatic (se não existir, cai no 404)
 const entry = await reader.collections.artigos.read(slug);
 
@@ -68,6 +70,7 @@ const post = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>{post.title} | Dra. Nathalie Almeida</title>
+    <link rel="canonical" href={canonicalURL} />
 
     <meta
       name="description"
@@ -110,5 +113,6 @@ const post = {
     <WhatsAppButton client:idle />
   </body>
 </html>
+
 
 
