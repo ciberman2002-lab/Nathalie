@@ -51,13 +51,38 @@ const schema = {
     
     <meta name="description" content="Advogada em Presidente Dutra - BA. Nathalie Almeida: Atuação em Direito do Trabalho, Sucessões e soluções extrajudiciais. Atendimento em toda região." />
 
-<script is:inline type="text/partytown">
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+<script is:inline>
+  (function() {
+    var gtmId = 'GTM-WRQS566H'; // 
+    var gtmLoaded = false;
+
+    function loadGTM() {
+      if (gtmLoaded) return;
+      gtmLoaded = true;
+
+      // Script oficial do GTM injetado dinamicamente
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-WRQS566H');
-  </script>
+
+      // Remove os eventos para economizar memória
+      window.removeEventListener('scroll', loadGTM);
+      window.removeEventListener('mousemove', loadGTM);
+      window.removeEventListener('touchstart', loadGTM);
+    }
+
+    // Ativa o GTM apenas quando o usuário interagir
+    window.addEventListener('scroll', loadGTM, { passive: true });
+    window.addEventListener('mousemove', loadGTM, { passive: true });
+    window.addEventListener('touchstart', loadGTM, { passive: true });
+    
+    // Opcional: Carrega após 5 segundos se não houver interação
+    setTimeout(loadGTM, 5000);
+  })();
+</script>
+
     
     <meta name="viewport" content="width=device-width" />
     <meta name="theme-color" content="#640d14">
