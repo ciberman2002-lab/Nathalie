@@ -278,9 +278,9 @@ const Header: React.FC = () => {
             onClick={handleLogoClick}
             className="text-center group cursor-pointer flex flex-col items-center"
           >
-            <h1 className="font-classic text-sm md:text-2xl tracking-[0.2em] md:tracking-[0.3em] bordeaux-text leading-tight group-hover:text-[#c5a028] transition-colors">
+            <p className="font-classic text-sm md:text-2xl tracking-[0.2em] md:tracking-[0.3em] bordeaux-text leading-tight group-hover:text-[#c5a028] transition-colors">
               NATHALIE ALMEIDA
-            </h1>
+            </p>
             <div className="h-[1px] w-4 md:w-6 bg-[#c5a028] my-0.5 md:my-1 opacity-50" />
             <p className="text-[7px] md:text-[8px] tracking-[0.3em] md:tracking-[0.5em] gold-text uppercase font-medium">
               Advocacia e Consultoria Jurídica
