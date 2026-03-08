@@ -183,7 +183,7 @@ const Hero: React.FC = () => {
             fetchPriority="high"
             loading="eager"
             decoding="async"
-            initial={{ opacity: 0, scale: 1.1 }}
+            initial={{ opacity: 0.1, scale: 1.1 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="w-full h-full object-cover object-top"
@@ -205,7 +205,7 @@ const Hero: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-20">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0.1, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-center lg:text-left mt-[-175px] sm:mt-[-190px] lg:mt-0 relative"
