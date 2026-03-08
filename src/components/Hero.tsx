@@ -183,7 +183,7 @@ const Hero: React.FC = () => {
             alt="Dra. Nathalie Almeida"
             className="w-full h-full object-cover object-top"
           /> */}
-          <motion.img
+          {/* <motion.img
             src="/nathalie-almeida-de-carvalho-advogada.webp"
             alt="Dra. Nathalie Almeida"
             fetchPriority="high" // O "P" deve ser maiúsculo no React/TS
@@ -193,7 +193,17 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
             className="w-full h-full object-cover object-top"
-          />
+          /> */}
+           <img 
+        src="/nathalie-almeida-de-carvalho-advogada.webp"
+        alt="Dra. Nathalie Almeida - Advogada"
+        fetchPriority="high" 
+        loading="eager"
+        decoding="async"
+        className="w-full h-full object-cover object-top animate-hero-fade"
+        width={448} 
+        height={597}
+      />
           {/* White gradient fade over the bottom of the image */}
           <div className="absolute inset-x-0 bottom-0 h-[80%] bg-gradient-to-t from-[#fdfbf7] via-[#fdfbf7] via-[#fdfbf7]/90 via-[#fdfbf7]/40 to-transparent pointer-events-none" />
         </div>
