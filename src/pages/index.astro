@@ -14,7 +14,6 @@ import WhatsAppButton from '../components/WhatsAppButton';
 
 import { getAllArticles } from '../utils/keystatic-reader'; // ajuste o caminho se necessário
 
-// Leitura dos artigos reais no server-side
 const allPosts = await getAllArticles();
 
 const last3Posts = allPosts.slice(0, 3);
@@ -109,12 +108,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <Header client:idle />
     
     <main>
-      <Hero />
+      <Hero client:load/>
       <Expertise client:visible />
       <About client:visible />
       <Insights client:visible posts={last3Posts} />
       <FAQ client:visible />
-<!-- <Contact client:visible /> -->
     </main>
 
     <Footer />
@@ -122,7 +120,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <WhatsAppButton client:idle />
 
 <script is:inline>
-  // Função para scroll suave com offset
   function scrollToSection(sectionId) {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -132,12 +129,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         top: elementPosition - offset,
         behavior: 'smooth'
       });
-      // Limpa URL
       history.replaceState(null, '', window.location.pathname);
     }
   }
 
-  // Verifica parâmetro na URL
   document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const section = urlParams.get('section');
