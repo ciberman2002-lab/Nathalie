@@ -175,26 +175,20 @@ const Hero: React.FC = () => {
         {" "}
         {/* pt-4 → pt-3 para subir ~4px */}
         <div className="relative w-full aspect-[4/5] overflow-hidden">
-          {/* <motion.img
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
+          <motion.img
             src="/nathalie-almeida-de-carvalho-advogada.webp"
             alt="Dra. Nathalie Almeida"
-            className="w-full h-full object-cover object-top"
-          /> */}
-          {/* <motion.img
-            src="/nathalie-almeida-de-carvalho-advogada.webp"
-            alt="Dra. Nathalie Almeida"
-            fetchPriority="high" // O "P" deve ser maiúsculo no React/TS
+            width={448} 
+            height={597}
+            fetchPriority="high"
             loading="eager"
             decoding="async"
             initial={{ opacity: 0, scale: 1.1 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             className="w-full h-full object-cover object-top"
-          /> */}
-           <img 
+          /> 
+           {/* <img 
         src="/nathalie-almeida-de-carvalho-advogada.webp"
         alt="Dra. Nathalie Almeida - Advogada"
         fetchPriority="high" 
@@ -203,7 +197,7 @@ const Hero: React.FC = () => {
         className="w-full h-full object-cover object-top animate-hero-fade"
         width={448} 
         height={597}
-      />
+      /> */}
           {/* White gradient fade over the bottom of the image */}
           <div className="absolute inset-x-0 bottom-0 h-[80%] bg-gradient-to-t from-[#fdfbf7] via-[#fdfbf7] via-[#fdfbf7]/90 via-[#fdfbf7]/40 to-transparent pointer-events-none" />
         </div>
@@ -213,7 +207,7 @@ const Hero: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
           className="text-center lg:text-left mt-[-175px] sm:mt-[-190px] lg:mt-0 relative"
         >
           {/* Tag Excellence */}
