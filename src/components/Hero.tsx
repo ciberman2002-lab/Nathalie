@@ -195,7 +195,7 @@ const Hero: React.FC = () => {
             className="w-full h-full object-cover object-top"
           /> */}
            <img 
-        src="/nathalie-almeida-de-carvalho-advogada.webp"
+        src="/nathalie-almeida-de-carvalho-advogada-especialista.webp"
         alt="Dra. Nathalie Almeida - Advogada"
         fetchPriority="high" 
         loading="eager"
