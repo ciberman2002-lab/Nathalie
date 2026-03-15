@@ -79,36 +79,43 @@ const post = {
     />
 
     <script is:inline>
-      (function() {
-        var gtmId = 'GTM-WRQS566H'; // 
-        var gtmLoaded = false;
-    
-        function loadGTM() {
-          if (gtmLoaded) return;
-          gtmLoaded = true;
-    
-          // Script oficial do GTM injetado dinamicamente
-          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-WRQS566H');
-    
-          // Remove os eventos para economizar memória
-          window.removeEventListener('scroll', loadGTM);
-          window.removeEventListener('mousemove', loadGTM);
-          window.removeEventListener('touchstart', loadGTM);
-        }
-    
-        // Ativa o GTM apenas quando o usuário interagir
-        window.addEventListener('scroll', loadGTM, { passive: true });
-        window.addEventListener('mousemove', loadGTM, { passive: true });
-        window.addEventListener('touchstart', loadGTM, { passive: true });
-        
-        // Opcional: Carrega após 5 segundos se não houver interação
-        setTimeout(loadGTM, 5000);
-      })();
-    </script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  
+  var saved = localStorage.getItem('cookie-consent');
+  var prefs = saved ? JSON.parse(saved) : { analytics: false, ad_storage: false };
+
+  gtag('consent', 'default', {
+    'analytics_storage': prefs.analytics ? 'granted' : 'denied',
+    'ad_storage': prefs.analytics ? 'granted' : 'denied',
+    'wait_for_update': 500
+  });
+
+  (function() {
+    var gtmId = 'GTM-WRQS566H';
+    var gtmLoaded = false;
+
+    function loadGTM() {
+      if (gtmLoaded) return;
+      gtmLoaded = true;
+
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer', gtmId);
+
+      window.removeEventListener('scroll', loadGTM);
+      window.removeEventListener('mousemove', loadGTM);
+      window.removeEventListener('touchstart', loadGTM);
+    }
+
+    window.addEventListener('scroll', loadGTM, { passive: true });
+    window.addEventListener('mousemove', loadGTM, { passive: true });
+    window.addEventListener('touchstart', loadGTM, { passive: true });
+    setTimeout(loadGTM, 5000);
+  })();
+</script>
 
     <meta property="og:title" content={post.title} />
     <meta property="og:description" content={post.quote} />
