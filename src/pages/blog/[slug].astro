@@ -62,6 +62,33 @@ const post = {
   tags: entry.tags,
   recommended: entry.recommended,
 };
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": post.title,
+  "description": post.quote || "Artigo jurídico especializado por Dra. Nathalie Almeida",
+  "image": post.heroImage?.src ? new URL(post.heroImage.src, Astro.site).toString() : "",
+  "datePublished": post.date,
+  "author": {
+    "@type": "Person",
+    "name": post.author || "Dra. Nathalie Almeida",
+    "url": "https://www.nathaliecarvalho.adv.br"
+  },
+  "publisher": {
+    "@type": "LegalService",
+    "name": "Nathalie Almeida - Advogada",
+    "logo": {
+      "@type": "ImageObject",
+      "url": new URL("/Nathalie_logo_SVG.svg", Astro.site).toString()
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonicalURL.toString()
+  },
+  "inLanguage": "pt-BR"
+};
 ---
 
 <html lang="pt-br">
@@ -77,6 +104,8 @@ const post = {
       content={post.quote ||
         'Artigo jurídico especializado pela Dra. Nathalie Almeida'}
     />
+
+<script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
 
     <script is:inline>
   window.dataLayer = window.dataLayer || [];
