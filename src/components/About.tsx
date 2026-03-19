@@ -114,6 +114,7 @@ const About: React.FC = () => {
             <div className="absolute -inset-4 border gold-border border-opacity-10  pointer-events-none" />
             <img
               src="/nathalie-almeida-de-carvalho-advogada-sobre.webp"
+              loading="lazy"
               alt="Advogada Nathalie Almeida de Carvalho Na OAB"
               className="w-full aspect-[4/5] md:aspect-square object-cover object-top shadow-2xl"
             />
