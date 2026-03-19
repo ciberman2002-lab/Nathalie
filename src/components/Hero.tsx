@@ -175,7 +175,7 @@ const Hero: React.FC = () => {
         {" "}
         {/* pt-4 → pt-3 para subir ~4px */}
         <div className="relative w-full aspect-[4/5] overflow-hidden">
-          <motion.img
+          {/* <motion.img
             src="/nathalie-almeida-de-carvalho-advogada.webp"
             alt="Dra. Nathalie Almeida"
             width={448} 
@@ -187,8 +187,8 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="w-full h-full object-cover object-top"
-          /> 
-           {/* <img 
+          />  */}
+           <img 
         src="/nathalie-almeida-de-carvalho-advogada.webp"
         alt="Dra. Nathalie Almeida - Advogada"
         fetchPriority="high" 
@@ -197,7 +197,7 @@ const Hero: React.FC = () => {
         className="w-full h-full object-cover object-top animate-hero-fade"
         width={448} 
         height={597}
-      /> */}
+      />
           {/* White gradient fade over the bottom of the image */}
           <div className="absolute inset-x-0 bottom-0 h-[80%] bg-gradient-to-t from-[#fdfbf7] via-[#fdfbf7] via-[#fdfbf7]/90 via-[#fdfbf7]/40 to-transparent pointer-events-none" />
         </div>
