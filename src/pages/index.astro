@@ -105,6 +105,22 @@ const schema = {
     <link rel="icon" type="image/svg+xml" href="/Nathalie_logo_SVG.svg">
     <link rel="preload" href="/fonts/cinzel-v26-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
     <link rel="preload" href="/fonts/montserrat-v31-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<style is:inline>
+    @keyframes hero-fade {
+      0% { opacity: 0.8; transform: scale(1.05); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    /* A classe que aplica a animação */
+    .animate-hero-fade {
+      /* Aqui conectamos o nome 'hero-fade' acima à classe */
+      animation: hero-fade 0.8s ease-out forwards;
+      
+      /* Dica extra: avisa o navegador para usar a placa de vídeo */
+      will-change: opacity, transform; 
+    }
+  </style>
     <meta name="msvalidate.01" content="E7822AC013BF559F63F418AD08552910" />
   </head>
   <body class="bg-[#fdfbf7] selection:bg-[#4a0404] selection:text-white overflow-x-hidden">
