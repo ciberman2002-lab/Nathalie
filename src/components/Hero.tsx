@@ -194,7 +194,7 @@ const Hero: React.FC = () => {
         fetchPriority="high" 
         loading="eager"
         decoding="async"
-        className="w-full h-full object-cover object-top animate-hero-fade"
+        className="w-full h-full object-cover object-top"
         width={448} 
         height={597}
       />
