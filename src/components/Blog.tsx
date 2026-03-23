@@ -15,27 +15,9 @@ interface BlogProps {
 }
 
 const Blog: React.FC<BlogProps> = ({ posts }) => {
-  // const limitedPosts = posts.slice(0, 9); // Limita a 9 posts
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const postsPerPage = 4; // Mantém o original
-  // const totalPages = Math.ceil(limitedPosts.length / postsPerPage);
-  // 1. Log para debugar (olhe o console do F12)
-  console.log("Posts originais:", posts.map(p => p.date));
-
-  // 2. Ordenação ultra-explícita
-  const sortedPosts = [...posts].sort((a, b) => {
-    const dateA = new Date(a.date).getTime();
-    const dateB = new Date(b.date).getTime();
-    return dateB - dateA; // O maior (recente) menos o menor (antigo)
-  });
-
-  console.log("Posts ordenados:", sortedPosts.map(p => p.date));
-
-  // 3. Aplica o limite após a ordenação
-  const limitedPosts = sortedPosts.slice(0, 9);
-
+  const limitedPosts = posts.slice(0, 9); // Limita a 9 posts
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 4;
+  const postsPerPage = 4; // Mantém o original
   const totalPages = Math.ceil(limitedPosts.length / postsPerPage);
 
   const handlePageChange = (page: number) => {
@@ -63,8 +45,13 @@ const Blog: React.FC<BlogProps> = ({ posts }) => {
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16">
+          {/* <AnimatePresence mode="wait">
+            {currentPosts.map((post, index) => ( */}
           <AnimatePresence mode="wait">
-            {currentPosts.map((post, index) => (
+          {[...posts]
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .slice((currentPage - 1) * postsPerPage, (currentPage - 1) * postsPerPage + postsPerPage)
+      .map((post, index) => (
               <motion.article
                 key={`${post.slug}-${index}`}
                 initial={{ opacity: 0, y: 20 }}
