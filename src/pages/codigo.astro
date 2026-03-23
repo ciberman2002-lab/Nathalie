@@ -1,0 +1,59 @@
+---
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import Ethics from '../components/Ethics';
+import '../styles/global.css';
+---
+
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <title>Código de Ética (OAB) | Dra. Nathalie Almeida</title>
+    
+<meta name="robots" content="index, follow" />
+    <meta name="description" content="Informações sobre a coleta e tratamento de dados pessoais no site da Dra. Nathalie Almeida de Carvalho, em conformidade com a LGPD." />
+    
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#640d14">
+    
+    <link rel="icon" type="image/svg+xml" href="/Nathalie_logo_SVG.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
+
+    <style>
+      h1 {
+        font-family: var(--font-serif-luxury);
+        color: var(--color-bordeaux);
+        font-size: clamp(2rem, 5vw, 3rem); 
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        margin: 0;
+      }
+
+      .divider {
+        width: 80px;
+        height: 2px;
+        background-color: var(--color-gold);
+        margin: 1.5rem auto;
+      }
+
+      p {
+        font-family: var(--font-sans);
+        color: #2d2d2d;
+        font-size: 1.1rem;
+        max-width: 550px;
+        line-height: 1.6;
+        margin-bottom: 2.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <Header client:load />
+
+    <Ethics client:load />>
+
+    <Footer client:load />
+  </body>
+</html>
