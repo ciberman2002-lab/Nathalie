@@ -36,7 +36,7 @@ const Blog: React.FC<BlogProps> = ({ posts }) => {
       <section className="max-w-7xl mx-auto px-6">
         <header className="text-center mb-20 md:mb-32">
           <span className="text-[10px] md:text-[11px] tracking-[0.5em] gold-text uppercase block mb-4 md:mb-6 font-classic">
-            Conhecimento Estratégico
+            Conhecimento Estratégicoo
           </span>
           <h1 className="font-serif-luxury text-4xl md:text-6xl bordeaux-text italic mb-6 md:mb-8">
             Artigos & Insights
