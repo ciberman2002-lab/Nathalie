@@ -143,20 +143,10 @@ const Insights: React.FC<InsightsProps> = ({ posts }) => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-         {posts
-  .slice() // Cria uma cópia
-  .sort((a, b) => {
-    // Converte "DD/MM/YYYY" para um objeto de data comparável
-    const [dayA, monthA, yearA] = a.date.split('/').map(Number);
-    const [dayB, monthB, yearB] = b.date.split('/').map(Number);
-    
-    const dateA = new Date(yearA, monthA - 1, dayA).getTime();
-    const dateB = new Date(yearB, monthB - 1, dayB).getTime();
-    
-    return dateB - dateA; // Recente (maior) para Antigo (menor)
-  })
-  .slice(0, 3) // Pega os 3 primeiros após a ordenação
-  .map((post, index) => (
+         {[...posts] 
+              .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) 
+              .slice(0, 3) 
+              .map((post, index) => (
               <motion.article
                 key={post.slug}
                 initial={{ opacity: 0, scale: 0.98 }}
