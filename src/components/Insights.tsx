@@ -143,10 +143,12 @@ const Insights: React.FC<InsightsProps> = ({ posts }) => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {posts
-            .slice(-3) 
-            .reverse()
-            .map((post, index) => (
+         
+              {posts
+              .slice() // Cria uma cópia para não mutar a prop original
+              .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) // Ordena: Recente -> Antigo
+              .slice(0, 3) // Pega os 3 primeiros (que agora são os mais recentes)
+              .map((post, index) => (
               <motion.article
                 key={post.slug}
                 initial={{ opacity: 0, scale: 0.98 }}
