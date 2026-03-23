@@ -216,7 +216,10 @@ interface BlogProps {
 }
 
 const Blog: React.FC<BlogProps> = ({ posts }) => {
-  const limitedPosts = posts.slice(0, 9); // Limita a 9 posts
+  // const limitedPosts = posts.slice(0, 9); // Limita a 9 posts
+  const limitedPosts = [...posts]
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .slice(0, 9);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 4; // Mantém o original
   const totalPages = Math.ceil(limitedPosts.length / postsPerPage);
