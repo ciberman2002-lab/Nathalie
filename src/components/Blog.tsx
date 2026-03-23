@@ -49,8 +49,8 @@ const Blog: React.FC<BlogProps> = ({ posts }) => {
             {currentPosts.map((post, index) => ( */}
           <AnimatePresence mode="wait">
           {[...posts]
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-      .slice((currentPage - 1) * postsPerPage, (currentPage - 1) * postsPerPage + postsPerPage)
+      .sort((a, b) => b.date.localeCompare(a.date)) // 1. Ordena tudo (Mais novo primeiro)
+      .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage) // 2. Pega só os 4 da página atual
       .map((post, index) => (
               <motion.article
                 key={`${post.slug}-${index}`}
